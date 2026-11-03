@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  Mail, 
+  Phone, 
   MapPin, 
   Clock, 
   Send, 
   CheckCircle2, 
-  MessageSquare, 
-  Phone,
   Sparkles 
 } from 'lucide-react';
 
@@ -19,16 +17,40 @@ const Contact = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can hook up your form submission logic (EmailJS, Formspree, or your backend API)
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch("https://formspree.io/f/meaaljod", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const data = await response.json();
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setErrorMessage("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,7 +83,7 @@ const Contact = () => {
         {/* Two-Column Layout */}
         <div className="contact-grid">
           
-          {/* Left Column: Contact Info & Perks */}
+          {/* Left Column: Direct Contact Info */}
           <div className="contact-info-panel">
             <div className="info-panel-header">
               <h3>Direct Communication</h3>
@@ -69,13 +91,18 @@ const Contact = () => {
             </div>
 
             <div className="info-cards-list">
+              {/* Call Us Card (Updated with Phone Icon and direct-dial links) */}
               <div className="info-card-item">
                 <div className="info-icon-box">
-                  <Mail size={20} className="text-cyan" />
+                  <Phone size={20} className="text-cyan" />
                 </div>
                 <div>
-                  <span className="info-label">Email Us</span>
-                  <p className="info-value">support@yourdomain.com</p>
+                  <span className="info-label">Call Us</span>
+                  <p className="info-value">
+                    <a href="tel:0785767721" style={{ color: 'inherit', textDecoration: 'none' }}>078 576 7721</a>
+                    {' • '}
+                    <a href="tel:0640192409" style={{ color: 'inherit', textDecoration: 'none' }}>064 019 2409</a>
+                  </p>
                 </div>
               </div>
 
@@ -100,7 +127,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Quick Guarantee Box */}
+            {/* Guarantee Box */}
             <div className="contact-perks-box">
               <Sparkles size={20} className="text-orange" />
               <div>
@@ -118,7 +145,7 @@ const Contact = () => {
                   <CheckCircle2 size={36} className="text-cyan" />
                 </div>
                 <h3>Message Received!</h3>
-                <p>Thank you for reaching out. We have received your inquiry and will be in touch shortly.</p>
+                <p>Thank you for reaching out. Your inquiry has been sent .</p>
                 <button 
                   className="btn-reset-form" 
                   onClick={() => { setIsSubmitted(false); setFormData({ name: '', email: '', service: 'Websites & Branding', message: '' }); }}
@@ -130,6 +157,12 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="contact-form">
                 <h3>Start Your Inquiry</h3>
                 
+                {errorMessage && (
+                  <div style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '15px' }}>
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label htmlFor="name">Your Name / Company</label>
                   <input 
@@ -185,8 +218,8 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn-submit-form">
-                  <Send size={16} /> Send Message
+                <button type="submit" className="btn-submit-form" disabled={isSubmitting}>
+                  <Send size={16} /> {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             )}
