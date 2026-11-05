@@ -84,12 +84,10 @@ const Home = () => {
         </div>
 
         {/* Right Column: 3D Rotating Carousel Visual */}
-        <div className="hero-right carousel-wrapper">
-          <NavLink to="/projects" className="badge-link-wrapper" aria-label="View Projects">
+        <div className="hero-right carousel-wrapper"> 
             <div className="floating-badge">
               <span>✨ Featured Work</span>
             </div>
-          </NavLink>
 
           {/* 3D Cylinder Scene */}
           <div className="carousel-scene">

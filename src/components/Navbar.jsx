@@ -9,7 +9,7 @@ const Navbar = () => {
         {/* Logo Section */}
         <NavLink to="/" className="nav-logo">
           <div className="logo-container">
-            <img src="/logo2.png" alt="A&T.TECH Logo" className="logo-img" />
+            <img src="/logo4.png" alt="A&T.TECH Logo" className="logo-img" />
           </div>
           <span className="logo-text">
             CoreKin<span className="dot">.</span><span className="tech-accent">Technologies</span>
@@ -35,12 +35,6 @@ const Navbar = () => {
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
           >
             Our Process
-          </NavLink>
-          <NavLink 
-            to="/projects" 
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-          >
-            Our Work
           </NavLink>
         </div>
 

@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Process from './pages/Process';
 import Services from './pages/Services';
-import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import './App.css';
 
@@ -19,7 +18,6 @@ function App() {
             
             <Route path="/services" element={<Services />} />
             <Route path="/process" element={<Process />} />
-            <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
