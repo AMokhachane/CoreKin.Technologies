@@ -212,7 +212,7 @@ const Contact = () => {
                     name="message" 
                     rows="4" 
                     required 
-                    placeholder="Tell us what you're trying to achieve..." 
+                    placeholder="Share your details or request here..." 
                     value={formData.message}
                     onChange={handleChange}
                   ></textarea>

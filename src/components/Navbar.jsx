@@ -8,13 +8,17 @@ const Navbar = () => {
         
         {/* Logo Section */}
         <NavLink to="/" className="nav-logo">
-          <div className="logo-container">
-            <img src="/logo4.png" alt="A&T.TECH Logo" className="logo-img" />
-          </div>
-          <span className="logo-text">
-            CoreKin<span className="dot">.</span><span className="tech-accent">Technologies</span>
-          </span>
-        </NavLink>
+  <div className="logo-container">
+    <img 
+      src="https://res.cloudinary.com/drgxphf5l/image/upload/logo4_ghwbtf.png" 
+      alt="CoreKin Technologies Logo" 
+      className="logo-img" 
+    />
+  </div>
+  <span className="logo-text">
+    CoreKin<span className="dot">.</span><span className="tech-accent">Technologies</span>
+  </span>
+</NavLink>
 
         {/* Navigation Links */}
         <div className="nav-links">

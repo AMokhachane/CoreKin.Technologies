@@ -9,13 +9,12 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/CoreKin.Technologies/">
       <div className="app-layout">
         <Navbar />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            
             <Route path="/services" element={<Services />} />
             <Route path="/process" element={<Process />} />
             <Route path="/contact" element={<Contact />} />
