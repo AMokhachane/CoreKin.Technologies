@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router basename="/CoreKin.Technologies/">
+    <Router basename="/">
       <div className="app-layout">
         <Navbar />
         <main className="main-content">
