@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Phone, 
+  Mail,
   MapPin, 
   Clock, 
   Send, 
@@ -31,14 +32,14 @@ const Contact = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch("https://formspree.io/f/meaaljod", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await fetch("https://formspree.io/f/xdegoaep", {
+  method: "POST",
+  body: JSON.stringify(formData),
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
       if (response.ok) {
         setIsSubmitted(true);
@@ -53,7 +54,7 @@ const Contact = () => {
     }
   };
 
-  return (
+return (
     <div className="contact-container">
       {/* Background Glow Accents */}
       <div className="glow-orange"></div>
@@ -91,7 +92,22 @@ const Contact = () => {
             </div>
 
             <div className="info-cards-list">
-              {/* Call Us Card (Updated with Phone Icon and direct-dial links) */}
+              {/* Email Us Card */}
+              <div className="info-card-item">
+                <div className="info-icon-box">
+                  <Mail size={20} className="text-orange" />
+                </div>
+                <div>
+                  <span className="info-label">Email Us</span>
+                  <p className="info-value">
+                    <a href="mailto:support@corekin.tech" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      support@corekin.tech
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              {/* Call Us Card */}
               <div className="info-card-item">
                 <div className="info-icon-box">
                   <Phone size={20} className="text-cyan" />
@@ -106,6 +122,7 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Location Card */}
               <div className="info-card-item">
                 <div className="info-icon-box">
                   <MapPin size={20} className="text-orange" />
@@ -116,6 +133,7 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Response Time Card */}
               <div className="info-card-item">
                 <div className="info-icon-box">
                   <Clock size={20} className="text-cyan" />
@@ -145,7 +163,7 @@ const Contact = () => {
                   <CheckCircle2 size={36} className="text-cyan" />
                 </div>
                 <h3>Message Received!</h3>
-                <p>Thank you for reaching out. Your inquiry has been sent .</p>
+                <p>Thank you for reaching out. Your inquiry has been sent.</p>
                 <button 
                   className="btn-reset-form" 
                   onClick={() => { setIsSubmitted(false); setFormData({ name: '', email: '', service: 'Websites & Branding', message: '' }); }}

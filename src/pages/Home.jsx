@@ -93,21 +93,20 @@ const Home = () => {
           <div className="carousel-scene">
             <div className="carousel-cylinder">
               {carouselImages.map((item, index) => {
-                // Calculate dynamic rotateY and translateZ positioning for a 5-item ring
-                const angle = index * (360 / carouselImages.length);
-                const style = {
-                  transform: `rotateY(${angle}deg) translateZ(240px)`
-                };
+  const angle = index * (360 / carouselImages.length);
+  const style = {
+    transform: `rotateY(${angle}deg) translateZ(var(--carousel-z, 240px))`
+  };
 
-                return (
-                  <div key={item.id} className="carousel-card" style={style}>
-                    <img src={item.url} alt={item.title} className="carousel-card-img" />
-                    <div className="carousel-card-caption">
-                      <span>{item.title}</span>
-                    </div>
-                  </div>
-                );
-              })}
+  return (
+    <div key={item.id} className="carousel-card" style={style}>
+      <img src={item.url} alt={item.title} className="carousel-card-img" />
+      <div className="carousel-card-caption">
+        <span>{item.title}</span>
+      </div>
+    </div>
+  );
+})}
             </div>
           </div>
         </div>
