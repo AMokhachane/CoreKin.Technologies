@@ -58,6 +58,18 @@ button {
   padding: 4rem 5%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed navbar height so section headings aren't hidden under the header */
+section {
+  scroll-margin-top: 80px; /* Adjust based on your header's actual height */
+}
+
+.app-layout {
+  padding-top: 80px; /* Same height as your navbar */
+}
 /* ==========================================================================
    NAVBAR COMPONENT (Navbar.css)
    ========================================================================== */
@@ -345,7 +357,7 @@ button {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 80px);
-  background-color: var(--bg-dark);
+  background-color: #0b0f17;
   color: var(--text-white);
   display: flex;
   align-items: center;

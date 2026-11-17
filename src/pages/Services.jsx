@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ArrowRight, Code, Globe, Laptop, Cpu, ChevronDown, ChevronUp, CheckCircle, Lightbulb } from 'lucide-react';
+import { FadeSlideSection, StaggerContainer, StaggerItem } from '../components/MotionSection';
 
 const Services = () => {
   // State to keep track of which service card is currently expanded (null means all closed)
@@ -95,92 +96,97 @@ const Services = () => {
 
       <div className="services-content-wrapper">
         
-        {/* Header Section */}
-        <div className="services-header">
-          <div className="category-badge">
-            <span className="badge-dot"></span>
-            <span>WHAT WE DO</span>
+        {/* Header Section with Fade & Slide Motion */}
+        <FadeSlideSection>
+          <div className="services-header">
+            <div className="category-badge">
+              <span className="badge-dot"></span>
+              <span>WHAT WE DO</span>
+            </div>
+
+            <h1 className="services-headline">
+              Technology built around the<br />
+              <span className="text-orange">way </span>
+              <span className="text-white">your business </span>
+              <span className="text-cyan">works.</span>
+            </h1>
+
+            <p className="services-description">
+              We combine strategic technical guidance, software engineering, and workspace IT implementation so technology solves real operational challenges instead of creating complexity.
+            </p>
           </div>
+        </FadeSlideSection>
 
-          <h1 className="services-headline">
-            Technology built around the<br />
-            <span className="text-orange">way </span>
-            <span className="text-white">your business </span>
-            <span className="text-cyan">works.</span>
-          </h1>
-
-          <p className="services-description">
-            We combine strategic technical guidance, software engineering, and workspace IT implementation so technology solves real operational challenges instead of creating complexity.
-          </p>
-        </div>
-
-        {/* Primary Services Grid */}
-        <div className="primary-services-grid">
+        {/* Primary Services Grid with Staggered Reveal */}
+        <StaggerContainer className="primary-services-grid">
           {primaryServices.map((service) => {
             const isExpanded = expandedId === service.id;
 
             return (
-              <div 
-                key={service.id} 
-                className={`service-card ${service.colorClass} ${isExpanded ? 'expanded-card' : ''}`}
-                onClick={() => handleCardClick(service.id)}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className="card-top">
-                  <span className="service-number">{service.id}</span>
-                  <div className="service-card-icon">{service.icon}</div>
-                </div>
-
-                <h3 className="card-title">{service.title}</h3>
-                <p className="card-description">{service.description}</p>
-                
-                <div className="card-tag">
-                  <span className="mini-dot"></span>
-                  <span>{service.tag}</span>
-                </div>
-
-                {/* Expandable Simple Explanation Section */}
-                {isExpanded && (
-                  <div className="card-expanded-content animate-fade-in" onClick={(e) => e.stopPropagation()}>
-                    <div className="simple-summary-box">
-                      <div className="summary-title">
-                        <Lightbulb size={16} className="text-orange" />
-                        <span>In Simple Terms:</span>
-                      </div>
-                      <p>{service.simpleExplanation.summary}</p>
-                    </div>
-
-                    <div className="benefits-list-title">What this means for you:</div>
-                    <ul className="benefits-list">
-                      {service.simpleExplanation.benefits.map((benefit, index) => (
-                        <li key={index}>
-                          <CheckCircle size={14} className="text-cyan" />
-                          <span>{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
+              <StaggerItem key={service.id}>
+                <div 
+                  className={`service-card ${service.colorClass} ${isExpanded ? 'expanded-card' : ''}`}
+                  onClick={() => handleCardClick(service.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div className="card-top">
+                    <span className="service-number">{service.id}</span>
+                    <div className="service-card-icon">{service.icon}</div>
                   </div>
-                )}
 
-                <div className="card-link">
-                  <span>{service.linkText}</span> 
-                  {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  <h3 className="card-title">{service.title}</h3>
+                  <p className="card-description">{service.description}</p>
+                  
+                  <div className="card-tag">
+                    <span className="mini-dot"></span>
+                    <span>{service.tag}</span>
+                  </div>
+
+                  {/* Expandable Simple Explanation Section */}
+                  {isExpanded && (
+                    <div className="card-expanded-content animate-fade-in" onClick={(e) => e.stopPropagation()}>
+                      <div className="simple-summary-box">
+                        <div className="summary-title">
+                          <Lightbulb size={16} className="text-orange" />
+                          <span>In Simple Terms:</span>
+                        </div>
+                        <p>{service.simpleExplanation.summary}</p>
+                      </div>
+
+                      <div className="benefits-list-title">What this means for you:</div>
+                      <ul className="benefits-list">
+                        {service.simpleExplanation.benefits.map((benefit, index) => (
+                          <li key={index}>
+                            <CheckCircle size={14} className="text-cyan" />
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="card-link">
+                    <span>{service.linkText}</span> 
+                    {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
 
-        {/* Call To Action Footer Banner */}
-        <div className="services-cta-banner">
-          <div className="cta-content">
-            <h3>Not sure where to start or what you need?</h3>
-            <p>Schedule a quick technical consultation to map out your digital requirements.</p>
+        {/* Call To Action Footer Banner with Fade & Slide Motion */}
+        <FadeSlideSection>
+          <div className="services-cta-banner">
+            <div className="cta-content">
+              <h3>Not sure where to start or what you need?</h3>
+              <p>Schedule a quick technical consultation to map out your digital requirements.</p>
+            </div>
+            <NavLink to="/contact" className="btn-explore">
+              Schedule Consultation <ArrowRight size={18} />
+            </NavLink>
           </div>
-          <NavLink to="/contact" className="btn-explore">
-            Schedule Consultation <ArrowRight size={18} />
-          </NavLink>
-        </div>
+        </FadeSlideSection>
 
       </div>
     </div>
