@@ -207,6 +207,59 @@ section {
 }
 
 /* ==========================================================================
+   REFINED DYNAMIC DESKTOP SLIDING PILL NAVBAR
+   ========================================================================== */
+
+.desktop-links-wrapper {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  padding: 4px;
+  display: flex;
+  backdrop-filter: blur(10px);
+}
+
+.desktop-links-wrapper .nav-links {
+  display: flex;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+}
+
+/* Tighter, equal small spacing by default */
+.desktop-links-wrapper .nav-link {
+  padding: 8px 18px; /* Reduced side padding so items sit closer together */
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+  min-width: 90px; /* Ensures consistent baseline sizing */
+}
+
+.desktop-links-wrapper .nav-link:hover,
+.desktop-links-wrapper .nav-link.active {
+  color: #ffffff;
+}
+
+/* Dynamic Sliding Active Pill that adjusts width smoothly per item */
+.desktop-sliding-pill {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(249, 115, 22, 0.2));
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  border-radius: 24px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* Smoothly transitions both position AND width */
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+/* ==========================================================================
    MOBILE FLOATING CURVED TAB BAR (<= 768px)
    ========================================================================== */
 @media screen and (max-width: 768px) {
@@ -779,7 +832,7 @@ section {
   min-height: 100vh;
   background-color: #0b0f17;
   color: #ffffff;
-  padding: 140px 24px 100px; /* Increased top padding so desktop content clears the fixed navbar */
+  padding: 70px 24px 100px; /* Increased top padding so desktop content clears the fixed navbar */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -1285,7 +1338,7 @@ section {
   min-height: 100vh;
   background-color: #0b0f17;
   color: #ffffff;
-  padding: 140px 24px 100px; /* Updated top padding to 140px to clear desktop top navbar */
+  padding: 70px 24px 100px; /* Updated top padding to 140px to clear desktop top navbar */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -1972,7 +2025,7 @@ section {
   min-height: 100vh;
   background-color: #0b0f17;
   color: #ffffff;
-  padding: 140px 24px 100px; /* Updated top padding to clear desktop top navbar */
+  padding: 70px 24px 100px; /* Updated top padding to clear desktop top navbar */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2336,5 +2389,217 @@ section {
 @media screen and (max-width: 480px) {
   .contact-headline {
     font-size: 1.85rem;
+  }
+}
+
+/* ==========================================================================
+   FOOTER STYLES
+   ========================================================================== */
+.footer-container {
+  background: #080c14;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 60px 24px 30px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr 1.3fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+/* Brand Column */
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.logo-text-main {
+  color: #fcfaf8;
+}
+
+.logo-text-sub {
+  color: #06b6d4;
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #64748b;
+}
+
+/* Social Buttons */
+.social-links-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.social-icon-btn.instagram:hover {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: #f97316;
+  color: #f97316;
+  transform: translateY(-3px);
+}
+
+.social-icon-btn.facebook:hover {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: #06b6d4;
+  color: #06b6d4;
+  transform: translateY(-3px);
+}
+
+.social-icon-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Footer Columns */
+.footer-heading {
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.footer-links button:hover {
+  color: #06b6d4;
+}
+
+.footer-links.static li {
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+/* Contact List */
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.footer-contact-list a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-list a:hover {
+  color: #f97316;
+}
+
+.phone-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Bottom Bar */
+.footer-bottom-bar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.back-to-top-btn {
+  background: none;
+  border: none;
+  color: #06b6d4;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.back-to-top-btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Grid for Mobile */
+@media screen and (max-width: 850px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-brand-col {
+    grid-column: span 1;
+  }
+  
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
   }
 }

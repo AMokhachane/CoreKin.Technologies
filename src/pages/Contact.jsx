@@ -33,13 +33,13 @@ const Contact = () => {
 
     try {
       const response = await fetch("https://formspree.io/f/xdegoaep", {
-  method: "POST",
-  body: JSON.stringify(formData),
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
 
       if (response.ok) {
         setIsSubmitted(true);
@@ -54,7 +54,7 @@ const Contact = () => {
     }
   };
 
-return (
+  return (
     <div className="contact-container">
       {/* Background Glow Accents */}
       <div className="glow-orange"></div>
@@ -84,7 +84,7 @@ return (
         {/* Two-Column Layout */}
         <div className="contact-grid">
           
-          {/* Left Column: Direct Contact Info */}
+          {/* Left Column: Direct Contact Info & Socials */}
           <div className="contact-info-panel">
             <div className="info-panel-header">
               <h3>Direct Communication</h3>
@@ -113,11 +113,9 @@ return (
                   <Phone size={20} className="text-cyan" />
                 </div>
                 <div>
-                  <span className="info-label">Call Us</span>
+                  <span className="info-label">Call or WhatsApp Us</span>
                   <p className="info-value">
-                    <a href="tel:0785767721" style={{ color: 'inherit', textDecoration: 'none' }}>078 576 7721</a>
-                    {' • '}
-                    <a href="tel:0640192409" style={{ color: 'inherit', textDecoration: 'none' }}>064 019 2409</a>
+                    <a href="tel:0615438710" style={{ color: 'inherit', textDecoration: 'none' }}>061 543 8710</a>
                   </p>
                 </div>
               </div>

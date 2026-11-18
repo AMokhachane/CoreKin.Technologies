@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Process from './pages/Process';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
 import './App.css';
 
 // Single-page layout containing all sections stacked sequentially
@@ -41,6 +42,19 @@ function MainScrollLayout() {
       <section id="contact">
         <Contact />
       </section>
+
+      {/* Footer mounted directly at the end of the full scroll flow */}
+      <Footer />
+    </>
+  );
+}
+
+// Layout wrapper for standalone routes to include the footer cleanly
+function PageWrapper({ children }) {
+  return (
+    <>
+      {children}
+      <Footer />
     </>
   );
 }
@@ -52,13 +66,13 @@ function App() {
         <Navbar />
         <main className="main-content">
           <Routes>
-            {/* Main landing route with all sections stacked for continuous scrolling */}
+            {/* Main landing route with all sections stacked */}
             <Route path="/" element={<MainScrollLayout />} />
 
-            {/* Individual standalone routes if accessed directly */}
-            <Route path="/services" element={<Services />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/contact" element={<Contact />} />
+            {/* Standalone routes paired with the Footer */}
+            <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+            <Route path="/process" element={<PageWrapper><Process /></PageWrapper>} />
+            <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
           </Routes>
         </main>
       </div>

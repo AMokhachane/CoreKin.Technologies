@@ -8,9 +8,9 @@ import {
   Rocket, 
   ShieldCheck, 
   CheckCircle2,
-  Clock,
   Sparkles
 } from 'lucide-react';
+import { FadeSlideSection, StaggerContainer, StaggerItem } from '../components/MotionSection';
 
 const Process = () => {
   // 4-step workflow process
@@ -61,71 +61,79 @@ const Process = () => {
 
       <div className="process-content-wrapper">
         
-        {/* Header Section */}
-        <div className="process-header">
-          <div className="category-badge">
-            <span className="badge-dot"></span>
-            <span>HOW WE WORK</span>
-          </div>
-
-          <h1 className="process-headline">
-            Simple steps to<br />
-            <span className="text-orange">streamline </span>
-            <span className="text-white">your technology </span>
-            <span className="text-cyan">journey.</span>
-          </h1>
-
-          <p className="process-description">
-            No technical jargon, no hidden surprises. We follow a structured, transparent process to take your business from concept to a fully operational digital environment.
-          </p>
-        </div>
-
-        {/* Process Step Cards Grid */}
-        <div className="process-steps-grid">
-          {processSteps.map((item) => (
-            <div key={item.step} className={`process-card ${item.colorClass}`}>
-              <div className="process-card-header">
-                <span className="step-number">STEP {item.step}</span>
-                <div className="process-icon-box">{item.icon}</div>
-              </div>
-
-              <span className="step-subtitle">{item.subtitle}</span>
-              <h3 className="process-card-title">{item.title}</h3>
-              <p className="process-card-description">{item.description}</p>
-
-              <div className="process-highlights">
-                {item.highlights.map((point, index) => (
-                  <div key={index} className="highlight-item">
-                    <CheckCircle2 size={15} className="highlight-icon" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
+        {/* Header Section with Fade & Slide Motion */}
+        <FadeSlideSection>
+          <div className="process-header">
+            <div className="category-badge">
+              <span className="badge-dot"></span>
+              <span>HOW WE WORK</span>
             </div>
+
+            <h1 className="process-headline">
+              Simple steps to<br />
+              <span className="text-orange">streamline </span>
+              <span className="text-white">your technology </span>
+              <span className="text-cyan">journey.</span>
+            </h1>
+
+            <p className="process-description">
+              No technical jargon, no hidden surprises. We follow a structured, transparent process to take your business from concept to a fully operational digital environment.
+            </p>
+          </div>
+        </FadeSlideSection>
+
+        {/* Process Step Cards Grid with Staggered Reveal */}
+        <StaggerContainer className="process-steps-grid">
+          {processSteps.map((item) => (
+            <StaggerItem key={item.step}>
+              <div className={`process-card ${item.colorClass}`}>
+                <div className="process-card-header">
+                  <span className="step-number">STEP {item.step}</span>
+                  <div className="process-icon-box">{item.icon}</div>
+                </div>
+
+                <span className="step-subtitle">{item.subtitle}</span>
+                <h3 className="process-card-title">{item.title}</h3>
+                <p className="process-card-description">{item.description}</p>
+
+                <div className="process-highlights">
+                  {item.highlights.map((point, index) => (
+                    <div key={index} className="highlight-item">
+                      <CheckCircle2 size={15} className="highlight-icon" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        {/* What to Expect Callout / Guarantee Banner */}
-        <div className="process-guarantee-box">
-          <div className="guarantee-icon-wrapper">
-            <Sparkles size={28} className="text-cyan" />
+        {/* What to Expect Callout / Guarantee Banner with Fade & Slide Motion */}
+        <FadeSlideSection>
+          <div className="process-guarantee-box">
+            <div className="guarantee-icon-wrapper">
+              <Sparkles size={28} className="text-cyan" />
+            </div>
+            <div className="guarantee-details">
+              <h4>Our Commitment to You</h4>
+              <p>You retain 100% ownership of all domains, code, brand assets, and admin credentials. We build transparently so you are never locked into vendor traps.</p>
+            </div>
           </div>
-          <div className="guarantee-details">
-            <h4>Our Commitment to You</h4>
-            <p>You retain 100% ownership of all domains, code, brand assets, and admin credentials. We build transparently so you are never locked into vendor traps.</p>
-          </div>
-        </div>
+        </FadeSlideSection>
 
-        {/* Call To Action Footer Banner */}
-        <div className="services-cta-banner">
-          <div className="cta-content">
-            <h3>Ready to start your technical build?</h3>
-            <p>Whether you have a detailed specification or just an idea, let's discuss your goals.</p>
+        {/* Call To Action Footer Banner with Fade & Slide Motion */}
+        <FadeSlideSection>
+          <div className="services-cta-banner">
+            <div className="cta-content">
+              <h3>Ready to start your technical build?</h3>
+              <p>Whether you have a detailed specification or just an idea, let's discuss your goals.</p>
+            </div>
+            <NavLink to="/contact" className="btn-explore">
+              <MessageSquare size={18} /> Schedule Consultation <ArrowRight size={18} />
+            </NavLink>
           </div>
-          <NavLink to="/contact" className="btn-explore">
-            <MessageSquare size={18} /> Schedule Consultation <ArrowRight size={18} />
-          </NavLink>
-        </div>
+        </FadeSlideSection>
 
       </div>
     </div>
